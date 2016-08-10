@@ -6,10 +6,10 @@
 
 """
 
-# Questions to get started: 
+# Questions to get started:
+    # Why should data scientists learn to program? 
+    # Why learn Python specifically?
     # What is your programming background? In Python? 
-    # Why is programming important?
-    # What can make programming difficult to learn?
 
 # ==================================================================
 #                           D A T A  T Y P E S
@@ -68,7 +68,9 @@ var1 <= var2            # LESS THAN OR EQUAL TO
 10 * 3
 
 # Division
-10 / 3
+10 / 3          # returns 3 in Python 2.x
+10 / 3.0        # returns 3.333...
+10 / float(3)   # returns 3.333...
 
 # Powers
 10**3
@@ -132,6 +134,36 @@ lis[1][2]
 # A list within a list  within a list within a list within a list
 lis = [1,2,[3,4,[5,6,[7,8]]]]
 
+# ==================================================================
+#      D I C T: Unordered data structures with key-value pairs
+#               Keys must be unique
+# ==================================================================
+
+dct = {"Name": "Monty Python and the Flying Circus",
+       "Description": "British Comedy Group",
+       "Known for": ["Irreverant Comedy", "Monty Python and the Holy Grail"],
+       "Years Active" : 17,
+       "# Members": 6}
+       
+# Access an element within the list
+dct["Years Active"]
+
+# Add a new item to a list within the dictionary
+dct["Known for"].append("Influencing SNL")
+
+# Returns the keys
+dct.keys()
+# Returns the values
+dct.values()
+
+# Quiz: Create a dictionary within the 'dct' dictionary containing your
+# own favorite Monty Python influences
+dct["Influence"] = { "Asteroids": [13681, 9618, 9619, 9620, 9621, 9622], 
+                     "Technology": ["Spam", "Python", "IDLE (for Eric Idle)"],
+                     "Food": ["Monty Python's Holy Ale", "Vermonty Python"]}
+
+# Accessing a nested dictionary item
+dct["Influence"]["Technology"]
 
 # ==================================================================
 #                            S T R I N G S
@@ -168,79 +200,6 @@ s.split()
 s.split(" ") # Same thing
 
 # ==================================================================
-#      D I C T: Unordered data structures with key-value pairs
-#               Keys must be unique
-# ==================================================================
-
-dct = {"Name": "Monty Python and the Flying Circus",
-       "Description": "British Comedy Group",
-       "Known for": ["Irreverant Comedy", "Monty Python and the Holy Grail"],
-       "Years Active" : 17,
-       "# Members": 6}
-       
-# Access an element within the list
-dct["Years Active"]
-
-# Add a new item to a list within the dictionary
-dct["Known for"].append("Influencing SNL")
-
-# Accessing from a nested dictionary item
-dct["Influence"]["Technology"]
-
-# Returns the keys
-dct.keys()
-# Returns the values
-dct.values()
-
-# E X E R C I S E: Create a dictionary within a dictionary containing your
-# own favorite Monty Python influences
-
-# ==================================================================
-#           I F - S T A T E M E N T S   &   L O O P I N G
-# ==================================================================
-
-var1 = 1
-
-# If elif else statement
-if var1 > 5:
-    print "More than 5"
-elif var1 < 5:
-    print "Less than 5"
-else:
-    print "5"
-
-# For loop
-fruits = ['apple', 'banana', 'cherry', 'plum']
-for i in range(len(fruits)):
-    print fruits[i].upper()
-
-# Better way
-for fruit in fruits:
-    print fruit.upper()
-
-# While statement
-while var1 < 10:
-    print var1
-    var1 += 1 # This is commonly used shorthand for var1 = var1 + 1
-
-# ==================================================================
-#                              I M P O R T
-# ==================================================================
-
-# Import a package (collection of submodules)
-import sklearn
-clf = sklearn.tree.DecisionTreeClassifier()
-
-# Import a specific submodule within the sklearn package
-from sklearn import tree
-clf = tree.DecisionTreeClassifier()
-
-# Import the DecisionTreeClassifer class within the sklearn.tree submodule
-from sklearn.tree import DecisionTreeClassifier
-clf = DecisionTreeClassifier()
-
-
-# ==================================================================
 #                           F U N C T I O N S
 # ==================================================================
 
@@ -250,6 +209,7 @@ clf = DecisionTreeClassifier()
 # don't write enough functions! (p. 420 of Python for Data Analysis)
 
 # Range returns a list with a defined start/stop point (default start is 0)
+range(1, 10, 2) 
 range(5, 10) 
 range(10)
 
@@ -260,8 +220,8 @@ type(3)
 isinstance(4, str)
 
 # Len returns the length of an object
-len([1, 3, 5, 6])
 len("Holy Grail")
+len([3, 4, 5, 1])
 
 # User-defined functions start with the 'def' keyword
 # They may take inputs as arguments, and may return an output
@@ -273,6 +233,9 @@ my_function(100, 10)
 my_function(x=100, y=10)
 my_function(y=10, x=100)
 
+# This is not equivalent
+my_function(10, 100)
+
 # What if we want to make one of our arguments optional?
 def my_function_optional(x, y = 10):
     return x - y
@@ -281,8 +244,54 @@ def my_function_optional(x, y = 10):
 my_function_optional(100, 10)
 my_function_optional(100)
 
-# E X E R C I S E: Create a function that simulates a simple calulator
+# ==================================================================
+#           I F - S T A T E M E N T S   &   L O O P I N G
+# ==================================================================
 
+var1 = 10
+
+# If elif else statement
+# Whitespace is important
+if var1 > 5:
+    print "More than 5"
+elif var1 < 5:
+    print "Less than 5"
+else:
+    print "5"
+
+# While statement
+while var1 < 10:
+    print var1
+    var1 += 1 # This is commonly used shorthand for var1 = var1 + 1
+
+# For loop
+for i in range(0,10,2):
+    print i**2
+
+# For loop in the list
+fruits = ['apple', 'banana', 'cherry', 'plum']
+for i in range(len(fruits)):
+    print fruits[i].upper()
+
+# Better way
+for fruit in fruits:
+    print fruit.upper()
+
+# ==================================================================
+#                              I M P O R T
+# ==================================================================
+
+# Import a package (collection of (sub)modules)
+import sklearn
+clf = sklearn.tree.DecisionTreeClassifier()
+
+# Import a specific (sub)module within the sklearn package
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+
+# Import the DecisionTreeClassifer class within the sklearn.tree submodule
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
        
 # ==================================================================
 #                     L I S T  C O M P R E H E N S I O N
@@ -305,20 +314,56 @@ for x in numbers:
 # Short form using list comprehension
 lis2 = [x * 5 for x in numbers if isinstance(x, int)]
 
-quote = "Strange women lying in ponds is no basis for government"
-quote = quote.split()
-[x.capitalize() for x in quote if len(x) > 3]
+# ==================================================================
+#                           E X E R C I S E S 
+# ==================================================================
+
+# EXERCISE #1 
+# Create a function that acts as a simple calulator
+# If the operation is not specified, default to addition
+# If the operation is misspecified, return an prompt message
+# Ex: my_calc(4,5,"multiply") returns 20
+# Ex: my_calc(3,5) returns 8
+# Ex: my_calc(1, 2, "something") returns error message
 
 
-# E X E R C I S E : Create a list comprehension that that adds five to 
-# all numbers
+# EXERCISE #2
+# Given a list of numbers, return a list where
+# all adjacent duplicate elements have been reduced to a single element.
+# Ex: [1, 2, 2, 3, 2] returns [1, 2, 3, 2]. 
+# You may create a new list or modify the passed in list.
+
+# Bonus: Remove all duplicate values (adjacent or not)
+# Ex: [1, 2, 2, 3, 2] returns [1, 2, 3]
+
+
+# EXERCISE #3
+# Take a string, change it into a list and capitalize all words 
+# that are more than 3 characters long using list comprehension
+# Ex: "Strange women lying in ponds is no basis for government"
+# Returns: ['Strange', 'Women', 'Lying', 'Ponds', 'Basis', 'Government'] 
+
+# Bonus: Same as before, but output should include all words
+# Ex: "Strange women lying in ponds is no basis for government"
+# Returns: ['Strange', 'Women', 'Lying', 'in', 'Ponds', 'is', 
+#                                       'no', 'Basis', 'for', 'Government']
+
+
+
+"""
+====================================================================
+====================================================================
+                    B O N U S   C O N T E N T
+====================================================================
+====================================================================
+"""
+
 
 # ==================================================================
 #           O P T I O N S  F O R  C O D E   E X E C U T I O N
 # ==================================================================
 
 """
-
 Command line
     - Type: 'python myscript.py' to run a script in that directory
 
@@ -343,17 +388,23 @@ Spyder IDE
 
 """
 
+# ==================================================================
+#           T H E   W O R K I N G    D I R E C T O R Y
+# ==================================================================
+import os
 
+# Check the current working directory
+os.getcwd()
 
+# Change the current directory
+os.chdir('C:\\Python27')
 
-"""
-====================================================================
-====================================================================
-                            A P P E N D I X
-====================================================================
-====================================================================
-"""
+# Change from the current directory
+os.chdir('Scripts')
 
+# List out the files in the current directory
+for i in os.listdir(os.getcwd()):
+    print i
 
 # ==================================================================
 #                   D E S I G N  P H I L O S O P H Y
@@ -382,7 +433,6 @@ If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 """
-
 
 # ==================================================================
 #      T U P L E S --> Immutable data structures
